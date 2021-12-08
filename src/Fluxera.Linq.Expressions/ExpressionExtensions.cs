@@ -9,7 +9,16 @@
 	[PublicAPI]
 	public static class ExpressionExtensions
 	{
-		// See Pete Montgomery's post here: http://petemontgomery.wordpress.com/2008/08/07/caching-the-results-of-linq-queries/
+		/// <summary>
+		///		Converts the given <see cref="Expression"/> to a string representation.
+		/// </summary>
+		/// <remarks>
+		///		See Pete Montgomery's post here: http://petemontgomery.wordpress.com/2008/08/07/caching-the-results-of-linq-queries/
+		/// </remarks>
+		/// <typeparam name="T"></typeparam>
+		/// <typeparam name="TResult"></typeparam>
+		/// <param name="expression"></param>
+		/// <returns></returns>
 		public static string? ToExpressionString<T, TResult>(this Expression<Func<T, TResult>>? expression)
 		{
 			if(expression is null)
@@ -29,26 +38,50 @@
 			return expr.ToString();
 		}
 
-		public static Expression<Func<T, bool>> And<T>(this Expression<Func<T, bool>> first,
-			Expression<Func<T, bool>> second)
+		/// <summary>
+		///		Creates a <see cref="Expression"/> that represents an bitwise AND operation.
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="first"></param>
+		/// <param name="second"></param>
+		/// <returns></returns>
+		public static Expression<Func<T, bool>> And<T>(this Expression<Func<T, bool>> first, Expression<Func<T, bool>> second)
 		{
 			return first.Compose(second, Expression.And);
 		}
 
-		public static Expression<Func<T, bool>> AndAlso<T>(this Expression<Func<T, bool>> first,
-			Expression<Func<T, bool>> second)
+		/// <summary>
+		///		Creates a <see cref="Expression"/> that represents a conditional AND operation that evaluates the second operand only if it has to.
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="first"></param>
+		/// <param name="second"></param>
+		/// <returns></returns>
+		public static Expression<Func<T, bool>> AndAlso<T>(this Expression<Func<T, bool>> first, Expression<Func<T, bool>> second)
 		{
 			return first.Compose(second, Expression.AndAlso);
 		}
 
-		public static Expression<Func<T, bool>> Or<T>(this Expression<Func<T, bool>> first,
-			Expression<Func<T, bool>> second)
+		/// <summary>
+		///		Creates a <see cref="Expression"/> that represents an bitwise OR operation.
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="first"></param>
+		/// <param name="second"></param>
+		/// <returns></returns>
+		public static Expression<Func<T, bool>> Or<T>(this Expression<Func<T, bool>> first, Expression<Func<T, bool>> second)
 		{
 			return first.Compose(second, Expression.Or);
 		}
 
-		public static Expression<Func<T, bool>> OrElse<T>(this Expression<Func<T, bool>> first,
-			Expression<Func<T, bool>> second)
+		/// <summary>
+		///		Creates a <see cref="Expression"/> that represents a conditional OR operation that evaluates the second operand only if it has to.
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="first"></param>
+		/// <param name="second"></param>
+		/// <returns></returns>
+		public static Expression<Func<T, bool>> OrElse<T>(this Expression<Func<T, bool>> first, Expression<Func<T, bool>> second)
 		{
 			return first.Compose(second, Expression.OrElse);
 		}

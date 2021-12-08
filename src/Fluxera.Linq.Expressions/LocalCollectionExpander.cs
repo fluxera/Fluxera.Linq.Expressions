@@ -9,7 +9,7 @@
 	using JetBrains.Annotations;
 
 	/// <summary>
-	///     Enables cache key support for local collection values.
+	///     Expands local collection values.
 	/// </summary>
 	/// <remarks>
 	///     See: http://petemontgomery.wordpress.com/2008/08/07/caching-the-results-of-linq-queries/
