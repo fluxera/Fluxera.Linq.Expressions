@@ -24,7 +24,7 @@
 		/// <typeparam name="TResult"></typeparam>
 		/// <param name="expression"></param>
 		/// <returns></returns>
-		public static string? ToExpressionString<T, TResult>(this Expression<Func<T, TResult>>? expression)
+		public static string ToExpressionString<T, TResult>(this Expression<Func<T, TResult>> expression)
 		{
 			if(expression is null)
 			{
