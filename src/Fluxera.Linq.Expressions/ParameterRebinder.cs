@@ -26,6 +26,7 @@
 			return new ParameterRebinder(map).Visit(exp);
 		}
 
+		/// <inheritdoc />
 		protected override Expression VisitParameter(ParameterExpression p)
 		{
 			if(this.map.TryGetValue(p, out ParameterExpression replacement))

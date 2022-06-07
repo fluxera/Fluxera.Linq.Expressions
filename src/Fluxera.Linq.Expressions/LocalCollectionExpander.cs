@@ -17,11 +17,17 @@
 	[PublicAPI]
 	public sealed class LocalCollectionExpander : ExpressionVisitor
 	{
+		/// <summary>
+		///     Rewrites the given expression by expanding local collections.
+		/// </summary>
+		/// <param name="expression"></param>
+		/// <returns></returns>
 		public static Expression Rewrite(Expression expression)
 		{
 			return new LocalCollectionExpander().Visit(expression);
 		}
 
+		/// <inheritdoc />
 		protected override Expression VisitMethodCall(MethodCallExpression node)
 		{
 			// Pair the method's parameter types with its arguments.
@@ -40,9 +46,9 @@
 			// For any local collection parameters in the method, make a
 			// replacement argument which will print its elements.
 			var replacements = (from x in map
-								where (x.Param != null) && x.Param.GetTypeInfo().IsGenericType
+								where x.Param != null && x.Param.GetTypeInfo().IsGenericType
 								let g = x.Param.GetGenericTypeDefinition()
-								where (g == typeof(IEnumerable<>)) || (g == typeof(List<>))
+								where g == typeof(IEnumerable<>) || g == typeof(List<>)
 								where x.Arg.NodeType == ExpressionType.Constant
 								let elementType = x.Param.GetGenericArguments().Single()
 								let printer = this.MakePrinter((ConstantExpression)x.Arg, elementType)
