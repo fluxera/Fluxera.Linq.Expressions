@@ -43,6 +43,7 @@
 				Arg = node.Object
 			});
 
+			// ReSharper disable once ConditionIsAlwaysTrueOrFalse
 			// For any local collection parameters in the method, make a
 			// replacement argument which will print its elements.
 			var replacements = (from x in map
