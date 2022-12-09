@@ -1,4 +1,4 @@
-[![Build Status](https://dev.azure.com/fluxera/Foundation/_apis/build/status/GitHub/fluxera.Fluxera.Linq.Expressions?branchName=main)](https://dev.azure.com/fluxera/Foundation/_build/latest?definitionId=60&branchName=main)
+[![Build Status](https://dev.azure.com/fluxera/Foundation/_apis/build/status/GitHub/fluxera.Fluxera.Linq.Expressions?branchName=main&stageName=BuildAndTest)](https://dev.azure.com/fluxera/Foundation/_build/latest?definitionId=79&branchName=main)
 
 # Fluxera.Linq.Expressions
 
